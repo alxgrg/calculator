@@ -38,18 +38,19 @@ body {
   margin-bottom: 15px;
 }
 
-.button-container {
+.btn-container {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 8px;
   padding: 15px;
 }
 
-.button {
+.btn {
   height: 50px;
   background-color: rgb(31, 31, 31);
   color: white;
   font-size: 1.2rem;
+  border-radius: 8px;
 }
 
 .clear {

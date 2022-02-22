@@ -17,25 +17,52 @@
   <body>
     <div class="container">
       <div class="calculator">
-        <div class="display"><span class="display-number">80085</span></div>
-        <div class="button-container">
-          <button class="button clear" type="button">AC</button>
-          <button class="button" type="button">7</button>
-          <button class="button" type="button">8</button>
-          <button class="button" type="button">9</button>
-          <button class="button" type="button">÷</button>
-          <button class="button" type="button">4</button>
-          <button class="button" type="button">5</button>
-          <button class="button" type="button">6</button>
-          <button class="button" type="button">×</button>
-          <button class="button" type="button">1</button>
-          <button class="button" type="button">2</button>
-          <button class="button" type="button">3</button>
-          <button class="button" type="button">-</button>
-          <button class="button" type="button">.</button>
-          <button class="button" type="button">0</button>
-          <button class="button" type="button">=</button>
-          <button class="button" type="button">+</button>
+        <div class="display">
+          <span id="display" class="display-number">0</span>
+        </div>
+        <div class="btn-container">
+          <button
+            id="backspace"
+            value="backspace"
+            class="btn backspace"
+            type="button"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="feather feather-delete"
+            >
+              <path
+                d="M21 4H8l-7 8 7 8h13a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2z"
+              ></path>
+              <line x1="18" y1="9" x2="12" y2="15"></line>
+              <line x1="12" y1="9" x2="18" y2="15"></line>
+            </svg>
+          </button>
+          <button id="clear" class="btn clear" type="button">AC</button>
+          <button id="7" value="7" class="btn number" type="button">7</button>
+          <button id="8" value="8" class="btn number" type="button">8</button>
+          <button id="9" value="9" class="btn number" type="button">9</button>
+          <button id="divide" value="/" class="btn" type="button">÷</button>
+          <button id="4" value="4" class="btn number" type="button">4</button>
+          <button id="5" value="5" class="btn number" type="button">5</button>
+          <button id="6" value="6" class="btn number" type="button">6</button>
+          <button id="multiply" value="*" class="btn" type="button">×</button>
+          <button id="1" value="1" class="btn number" type="button">1</button>
+          <button id="2" value="2" class="btn number" type="button">2</button>
+          <button id="3" value="3" class="btn number" type="button">3</button>
+          <button id="subtract" value="-" class="btn" type="button">-</button>
+          <button id="." value="." class="btn" type="button">.</button>
+          <button id="0" value="0" class="btn number" type="button">0</button>
+          <button id="evaluate" class="btn" type="button">=</button>
+          <button id="add" value="+" class="btn" type="button">+</button>
         </div>
       </div>
     </div>
