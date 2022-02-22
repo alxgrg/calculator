@@ -9,9 +9,14 @@ let prevResult = '';
 
 let { num1, num2, op } = finalValues;
 
+window.addEventListener('keydown', handleKeyDown);
+
 // Set button event listeners
 buttons.forEach((btn) => {
   btn.addEventListener('click', () => {
+    if (isNaN(result)) {
+      clearHelper();
+    }
     handleButtonClick(btn);
     console.log({
       num1: num1,
@@ -35,11 +40,19 @@ function clearHelper() {
 }
 
 function opHelper(enteredOp, btn) {
+  if (num1.length === 0) {
+    displayValue = '0';
+    return;
+  }
   if (result.length > 0) {
     num1 = '' + result;
     num2 = '';
   } else if (num2.length > 0) {
     num1 = '' + operate(operator, parseFloat(num1), parseFloat(num2));
+    if (isNaN(num1)) {
+      result = num1;
+      return;
+    }
     num2 = '';
   }
   result = '';
@@ -92,6 +105,46 @@ function handleButtonClick(btn) {
   display.textContent = displayValue;
 }
 
+function handleKeyDown(e) {
+  let btn = {};
+  if (parseFloat(e.key) || e.key === '.') {
+    btn.value = e.key;
+    handleButtonClick(btn);
+  }
+  if (e.key === '+') {
+    btn.value = '+';
+    btn.id = 'add';
+    handleButtonClick(btn);
+  }
+  if (e.key === '-') {
+    btn.value = '-';
+    btn.id = 'subtract';
+    handleButtonClick(btn);
+  }
+  if (e.key === '/') {
+    btn.value = '÷';
+    btn.id = 'divide';
+    handleButtonClick(btn);
+  }
+  if (e.key === '*') {
+    btn.value = '×';
+    btn.id = 'multiply';
+    handleButtonClick(btn);
+  }
+  if (e.key === 'Backspace') {
+    btn.id = 'backspace';
+    handleButtonClick(btn);
+  }
+  if (e.key === '=') {
+    btn.id = 'evaluate';
+    handleButtonClick(btn);
+  }
+  if (e.key === 'Escape') {
+    btn.id = 'clear';
+    handleButtonClick(btn);
+  }
+}
+
 function add(x, y) {
   return x + y;
 }
@@ -111,8 +164,14 @@ function divide(x, y) {
 function evaluate() {
   if (prevResult.length > 0) {
     result = '' + operate(operator, parseFloat(prevResult), parseFloat(num2));
-  } else {
+  } else if (num1.length > 0 && num2.length > 0) {
     result = '' + operate(operator, parseFloat(num1), parseFloat(num2));
+  } else if (num1.length > 0 && op.length > 0) {
+    num2 = num1;
+    result = '' + operate(operator, parseFloat(num1), parseFloat(num2));
+  } else {
+    clearHelper();
+    return;
   }
 }
 
@@ -157,5 +216,8 @@ function backspace() {
 }
 
 function operate(operator, num1, num2) {
-  return operator(num1, num2);
+  if (operator === divide && num2 === 0) {
+    return '👾👾👾👾👾';
+  }
+  return parseFloat(operator(num1, num2).toFixed(18));
 }
